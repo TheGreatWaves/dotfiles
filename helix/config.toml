@@ -1,0 +1,26 @@
+theme = "catppuccin_mocha"
+
+[editor]
+true-color = true
+line-number = "relative"
+auto-format = true
+color-modes = true
+completion-replace = true
+
+# Line wrap
+[editor.soft-wrap]
+enable = true
+
+[editor.indent-guides]
+render = true
+
+[keys.normal]
+C-w = "save_selection"
+C-s = ":w!"
+space = {  w = { c = ":sh code ." }  }
+A-t = { v=":sh tmux split-window -h", h=":sh tmux split-window -v"}
+A-v = ":sh tmux split-window -h"
+A-h = ":sh tmux split-window -v"
+
+[keys.insert]
+C-s = ":w!"
