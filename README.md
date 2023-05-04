@@ -34,6 +34,14 @@ Panes and windows start from index `1`.
 ### Vi mode in terminal
 `<Prefix> [` Activate vi mode in terminal. (You can navigate and yank text as normal)
 
+# Helix Config
+`Ctrl + s` Write to file. \
+`Ctrl + w` Save jump selection. \
+`Space, w, c` Open vscode. \
+`Alt + t` Open tmux actions. \
+`Alt + h` Tmux split screen with horizontal line. \
+`Alt + v` Tmux split screen with vertical line.
+
 
 
 
