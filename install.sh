@@ -5,6 +5,9 @@
 #==============
 sudo chown -R $(whoami):admin /usr/local
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /root/.zprofile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+sudo apt-get install build-essential
 brew doctor
 brew update
 
@@ -28,16 +31,10 @@ sudo rm -rf ~/Brewfile > /dev/null 2>&1
 # Create symlinks in the home folder
 # Allow overriding with files of matching names in the custom-configs dir
 #==============
-SYMLINKS=()
 ln -sf ~/dotfiles/zshrc ~/.zshrc
-SYMLINKS+=('.zshrc')
 ln -sf ~/dotfiles/Brewfile ~/Brewfile
-SYMLINKS+=('Brewfile')
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-SYMLINKS+=('.tmux.conf')
 ln -s ~/dotfiles/helix/config.toml ~/.config/helix/config.toml
-SYMLINKS+=('config.toml')
-echo ${SYMLINKS[@]}
 
 cd ~
 brew bundle
