@@ -1,5 +1,9 @@
 # A good chunk of this installation file was referenced from mattjmorrison.
+
+# Just incase
 sudo apt-get install build-essential procps curl file git tmux -y
+
+git clone https://github.com/TheGreatWaves/dotfiles.git ~/dotfiles
 
 #==============
 # Install all the packages
