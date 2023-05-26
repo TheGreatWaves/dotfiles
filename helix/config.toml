@@ -1,3 +1,4 @@
+# theme = "gruvbox"
 theme = "catppuccin_mocha"
 
 [editor]
@@ -14,13 +15,25 @@ enable = true
 [editor.indent-guides]
 render = true
 
+[editor.statusline]
+right = ["diagnostics", "selections", "position","position-percentage", "file-encoding"]
+
 [keys.normal]
 C-w = "save_selection"
 C-s = ":w!"
-space = {  w = { c = ":sh code ." }  }
-A-t = { v=":sh tmux split-window -h", h=":sh tmux split-window -v"}
+V = ["goto_first_nonwhitespace", "extend_to_line_end"]
+D = ["ensure_selections_forward", "extend_to_line_end", "trim_selections"]
+x = "extend_line"
+a = ["append_mode", "collapse_selection"]
+i = ["insert_mode", "collapse_selection"]
 A-v = ":sh tmux split-window -h"
 A-h = ":sh tmux split-window -v"
+A-t = { v=":sh tmux split-window -h", h=":sh tmux split-window -v"}
+space = {  w = { c = ":sh code ." }  }
+
+[keys.select]
+";" = ["collapse_selection", "normal_mode"]
 
 [keys.insert]
-C-s = ":w!"
+C-s = ":w"
+
