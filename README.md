@@ -1,3 +1,11 @@
+# Installation
+I'm very forgetful so I tried my best to simply the installation process as much as possible. The `source` isn't ideal, but currently because of my hack-fix for the install script, it must be done. **Beware**, this has only been tested on ubuntu docker containers.  
+> Please note that `git` and `curl` is required. 
+```shell
+curl -L https://raw.githubusercontent.com/TheGreatWaves/dotfiles/master/install.sh | bash && source ~/.bashrc
+```
+
+
 # Tmux Config
 
 This configuration is used in conjunction with `Helix` and `WSL 2`.
@@ -40,8 +48,14 @@ Panes and windows start from index `1`.
 `Space, w, c` Open vscode. \
 `Alt + t` Open tmux actions. \
 `Alt + h` Tmux split screen with horizontal line. \
-`Alt + v` Tmux split screen with vertical line.
+`Alt + v` Tmux split screen with vertical line. \
+`V` Select current line and trim. \
+`D` Select from the current position of the cursor until the end of the line. 
 
+## Helix Notes:
+`i` and `a` is configured to not enter select mode by default. \
+`x`'s extend direction is based on the anchor which can be switched via `Alt-;`. \
+`;` collapses selection and returns you to normal mode right away.
 
 
 
