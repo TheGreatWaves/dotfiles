@@ -108,13 +108,3 @@ alias gitm="git checkout master"
 
 # markdown preview
 mdp() { pandoc "$1" | lynx -stdin; }
-
-
-gh () {
-  if [ $# -eq 0 ] # No account specified
-  then
-    sensible-browser "https://github.com/TheGreatWaves"
-  else
-    sensible-browser "https://github.com/$1"
-  fi
-}
