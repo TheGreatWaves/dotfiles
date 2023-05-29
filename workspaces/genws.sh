@@ -7,5 +7,6 @@ tmux select-layout even-horizontal
 tmux split-window -v
 tmux select-pane -t 1
 tmux resize-pane -t 1 -R 40
+tmux resize-pane -t 2 -D 6
 tmux send-keys 'hx' C-m 'Space' F
 tmux a
