@@ -32,6 +32,13 @@
   # Manually set timezone for now.
   time.timeZone = "Asia/Jakarta";
 
+  # Setting up user.
+  # Note: Don't forget to create the user!
+  users.users.kanagawa = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "input" "networkmanager" ]; # Enable sudo for the user.
+  };
+
   # Packages
   environment.systemPackages = with pkgs; [
     git
