@@ -22,6 +22,9 @@
 
   # enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.extraOptions = ''
+    warn-dirty = false
+  '';
   
   environment.systemPackages = with pkgs; [
     git
