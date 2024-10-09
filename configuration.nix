@@ -20,12 +20,19 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
 
-  # enable flakes
+  # Enable flakes.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.extraOptions = ''
     warn-dirty = false
   '';
   
+  # Automatically set the timezone.
+  # For some reason this doesn't work on WSL, fix then uncomment.
+  # services.automatic-timezoned.enable = true;
+  # Manually set timezone for now.
+  time.timeZone = "Asia/Jakarta";
+
+  # Packages
   environment.systemPackages = with pkgs; [
     git
     helix
