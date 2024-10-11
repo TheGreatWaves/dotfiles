@@ -32,16 +32,22 @@
   # Manually set timezone for now.
   time.timeZone = "Asia/Jakarta";
 
+  # Enabling the zsh shell.
+  programs.zsh.enable = true;
+
   # Setting up user.
   # Note: Don't forget to create the user!
   users.users.kanagawa = {
     isNormalUser = true;
     extraGroups = [ "wheel" "input" "networkmanager" ]; # Enable sudo for the user.
+    shell = pkgs.zsh;
   };
+
 
   # Packages
   environment.systemPackages = with pkgs; [
     git
     helix
+    zsh # Everyone loves zsh. :)
   ];  
 }
