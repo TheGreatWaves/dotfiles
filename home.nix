@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./just/config.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "kanagawa";
@@ -25,6 +29,7 @@
     htop
     bat
     nil
+    just
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -99,6 +104,16 @@
     enable = true;
     enableBashIntegration = true;
     enableAliases = true;
+  };
+
+  # Set up global justfile configurations.
+  programs.justfile = {
+    enable = true;
+    enableZshIntegration = true;
+    source = ''
+      rebuild profile="default":
+          sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
+    '';
   };
 
   # Setting up zsh.

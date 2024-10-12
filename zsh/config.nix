@@ -7,7 +7,7 @@
     theme = "sorin";
   };
   shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles/#default";
+    # rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles/#default";
     lg = "lazygit";
     please = "sudo $(fc -ln -1)";
     cat = "bat";
