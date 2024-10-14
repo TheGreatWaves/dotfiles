@@ -19,6 +19,9 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
+  # Set up fonts.
+  # fonts.fontconfig.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -30,22 +33,6 @@
     bat
     nil
     just
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -114,6 +101,30 @@
       rebuild profile="default":
           sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
     '';
+  };
+
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      theme = "catppuccin-mocha";
+      default_layout = "compact";
+      default_mode = "locked";
+      keybinds.locked = {
+        "bind \"Ctrl g\"".SwitchToMode = "Normal";
+        "bind \"Alt h\" \"Alt Left\"".MoveFocusOrTab = "Left";
+        "bind \"Alt l\" \"Alt Right\"".MoveFocusOrTab = "Right";
+        "bind \"Alt j\" \"Alt Down\"".MoveFocusOrTab = "Down";
+        "bind \"Alt k\" \"Alt Up\"".MoveFocusOrTab = "Up";
+        "bind \"Ctrl t\"".NewTab = null; 
+        "bind \"Alt f\"".ToggleFocusFullscreen = {};
+        "bind \"Ctrl x\"".CloseTab = {};
+        "bind \"Alt r\"" = {
+          SwitchToMode = "RenameTab";
+          TabNameInput = 0;
+        };
+      };
+    };
   };
 
   # Setting up zsh.
