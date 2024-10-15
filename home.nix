@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -33,6 +33,7 @@
     bat
     nil
     just
+    eza
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -93,16 +94,6 @@
     enableAliases = true;
   };
 
-  # Set up global justfile configurations.
-  programs.justfile = {
-    enable = true;
-    enableZshIntegration = true;
-    source = ''
-      rebuild profile="default":
-          sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
-    '';
-  };
-
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
@@ -126,7 +117,40 @@
       };
     };
   };
-
   # Setting up zsh.
   programs.zsh = import ./zsh/config.nix { inherit pkgs; };
+
+  # Setting up eza.
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  # Set up global justfile configurations.
+  programs.justfile = {
+    enable = true;
+    enableZshIntegration = true;
+    source = lib.concatStrings [
+      # Default
+      ''
+        rebuild profile="default":
+            sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
+      '' 
+
+      # If eza is enabled.
+      (lib.mkIf config.programs.eza.enable ''
+        [no-cd]
+        ls:
+          @eza
+
+        [no-cd]
+        ll:
+          @exa -alh
+
+        [no-cd]
+        tree:
+          @exa --tree
+      '').content
+    ];
+  };
 }
