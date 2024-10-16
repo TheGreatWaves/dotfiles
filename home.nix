@@ -130,7 +130,7 @@
   programs.justfile = {
     enable = true;
     enableZshIntegration = true;
-    source = lib.concatStrings [
+    source = lib.concatStringsSep "\n" [
       # Default
       ''
         rebuild profile="default":
@@ -144,16 +144,16 @@
       # eza
       (lib.mkIf config.programs.eza.enable ''
         [no-cd]
-        ls:
-          @eza
+        ls DIR=".":
+          @eza {{ DIR }}
 
         [no-cd]
-        ll:
-          @exa -alh
+        ll DIR=".":
+          @exa -alh {{ DIR }}
 
         [no-cd]
-        tree:
-          @exa --tree
+        tree DIR=".":
+          @exa --tree {{ DIR }}
       '').content
 
       # lazygit
@@ -166,8 +166,8 @@
       # bat
       (lib.mkIf config.programs.bat.enable ''
         [no-cd]
-        cat:
-          @bat
+        cat *FILES:
+          @bat {{ FILES }}
       '').content
     ];
   };
