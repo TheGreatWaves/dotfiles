@@ -134,10 +134,14 @@
       # Default
       ''
         rebuild profile="default":
-            sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
+            @echo "Building target profile: {{ profile }}"
+            @sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
+
+        please:
+          sudo $(fc -ln -1)
       '' 
 
-      # If eza is enabled.
+      # eza
       (lib.mkIf config.programs.eza.enable ''
         [no-cd]
         ls:
@@ -150,6 +154,20 @@
         [no-cd]
         tree:
           @exa --tree
+      '').content
+
+      # lazygit
+      (lib.mkIf config.programs.lazygit.enable ''
+        [no-cd]
+        lg:
+          @lazygit
+      '').content
+
+      # bat
+      (lib.mkIf config.programs.bat.enable ''
+        [no-cd]
+        cat:
+          @bat
       '').content
     ];
   };
