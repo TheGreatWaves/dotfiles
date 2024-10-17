@@ -133,12 +133,17 @@
     source = lib.concatStringsSep "\n" [
       # Default
       ''
+        default: commands
+      
         rebuild profile="default":
-            @echo "Building target profile: {{ profile }}"
-            @sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
+          @echo "Building target profile: {{ profile }}"
+          @sudo nixos-rebuild switch --flake ~/dotfiles/#{{ profile }}
+
+        commands:
+          @just -g --list
 
         please:
-          sudo $(fc -ln -1)
+          @sudo $(fc -ln -1)
       '' 
 
       # eza
@@ -154,6 +159,33 @@
         [no-cd]
         tree DIR=".":
           @exa --tree {{ DIR }}
+      '').content
+
+      # git
+      (lib.mkIf config.programs.git.enable ''
+        [no-cd]
+        gcmsg MESSAGE:
+          @git commit -m {{ MESSAGE }}
+
+        [no-cd]
+        gitc BRANCH:
+          @git checkout {{ BRANCH }}
+
+        [no-cd]
+        gitm:
+          @git checkout master
+
+        [no-cd]
+        gcf:
+          @git commit --amend --no-edit
+
+        [no-cd]
+        gcfm MESSAGE:
+          @git commit --amend --message
+
+        [no-cd]
+        gpmf:
+          @git push origin HEAD:$(git_main_branch) --force-with-lease
       '').content
 
       # lazygit
