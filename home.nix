@@ -34,6 +34,7 @@
     nil
     just
     eza
+    fzf
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -107,9 +108,9 @@
         "bind \"Alt l\" \"Alt Right\"".MoveFocusOrTab = "Right";
         "bind \"Alt j\" \"Alt Down\"".MoveFocusOrTab = "Down";
         "bind \"Alt k\" \"Alt Up\"".MoveFocusOrTab = "Up";
-        "bind \"Ctrl t\"".NewTab = null; 
+        "bind \"Alt t\"".NewTab = null; 
         "bind \"Alt f\"".ToggleFocusFullscreen = {};
-        "bind \"Ctrl x\"".CloseTab = {};
+        "bind \"Alt x\"".CloseTab = {};
         "bind \"Alt r\"" = {
           SwitchToMode = "RenameTab";
           TabNameInput = 0;
@@ -202,5 +203,11 @@
           @bat {{ FILES }}
       '').content
     ];
+  };
+
+  # fzf
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }
