@@ -35,6 +35,11 @@
     just
     eza
     fzf
+
+    # Languages
+    python3
+    poetry
+    gcc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
