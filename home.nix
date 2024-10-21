@@ -40,6 +40,8 @@
     python3
     poetry
     gcc
+    cargo
+    rustc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
