@@ -36,6 +36,9 @@
     eza
     fzf
 
+    # Better man pages
+    tldr
+
     # Languages
     python3
     poetry
