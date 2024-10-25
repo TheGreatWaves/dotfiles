@@ -39,6 +39,12 @@
     # Better man pages
     tldr
 
+    # Better cloc (count lines of code)
+    scc
+
+    # Disk usage utility
+    duf
+
     # Languages
     python3
     poetry
