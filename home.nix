@@ -36,11 +36,15 @@
     fzf
     taskwarrior3
 
+    # For reverse engineering
+    radare2
+
     # Better htop
     bpytop
 
     # Better man pages
     tldr
+    navi # Interactive cheatsheet
 
     # Better cloc (count lines of code)
     scc
