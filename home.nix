@@ -29,12 +29,15 @@
     lazygit
     z-lua
     neofetch
-    htop
     bat
     nil
     just
     eza
     fzf
+    taskwarrior3
+
+    # Better htop
+    bpytop
 
     # Better man pages
     tldr
@@ -44,6 +47,15 @@
 
     # Disk usage utility
     duf
+
+    # Better rm (rip)
+    rm-improved
+
+    # Better grep 
+    ripgrep
+
+    # Better tree
+    tre-command
 
     # Languages
     python3
