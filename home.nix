@@ -40,7 +40,7 @@
     radare2
 
     # Better htop
-    bpytop
+    btop
 
     # Better man pages
     tldr
