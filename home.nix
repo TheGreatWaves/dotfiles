@@ -170,19 +170,7 @@
       (builtins.readFile ./just-cmd-scripts/default.just)
 
       # eza
-      (lib.mkIf config.programs.eza.enable ''
-        [no-cd]
-        ls DIR=".":
-          @eza {{ DIR }}
-
-        [no-cd]
-        ll DIR=".":
-          @exa -alh {{ DIR }}
-
-        [no-cd]
-        tree DIR=".":
-          @exa --tree {{ DIR }}
-      '').content
+      (lib.mkIf config.programs.eza.enable (builtins.readFile ./just-cmd-scripts/eza.just)).content
 
       # git
       (lib.mkIf config.programs.git.enable ''
