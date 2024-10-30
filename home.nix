@@ -40,7 +40,7 @@
     radare2
 
     # Better htop
-    btop
+    bpytop
 
     # Better man pages
     tldr
@@ -173,31 +173,7 @@
       (lib.mkIf config.programs.eza.enable (builtins.readFile ./just-cmd-scripts/eza.just)).content
 
       # git
-      (lib.mkIf config.programs.git.enable ''
-        [no-cd]
-        gcmsg MESSAGE:
-          @git commit -m {{ MESSAGE }}
-
-        [no-cd]
-        gitc BRANCH:
-          @git checkout {{ BRANCH }}
-
-        [no-cd]
-        gitm:
-          @git checkout master
-
-        [no-cd]
-        gcf:
-          @git commit --amend --no-edit
-
-        [no-cd]
-        gcfm MESSAGE:
-          @git commit --amend --message
-
-        [no-cd]
-        gpmf:
-          @git push origin HEAD:$(git_main_branch) --force-with-lease
-      '').content
+      (lib.mkIf config.programs.git.enable (builtins.readFile ./just-cmd-scripts/git.just)).content
 
       # lazygit
       (lib.mkIf config.programs.lazygit.enable ''
