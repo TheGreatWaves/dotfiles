@@ -191,6 +191,12 @@
     ];
   };
 
+  # navi
+  programs.navi = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # fzf
   programs.fzf = {
     enable = true;
