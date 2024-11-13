@@ -40,7 +40,7 @@
     radare2
 
     # Better htop
-    bpytop
+    btop
 
     # Better man pages
     tldr
@@ -65,6 +65,7 @@
     python3
     poetry
     gcc
+    clang-tools
     cargo
     rustc
     go
