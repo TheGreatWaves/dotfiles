@@ -73,6 +73,8 @@
     zls
     lua
     lua-language-server
+    rust-analyzer
+    gopls
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
