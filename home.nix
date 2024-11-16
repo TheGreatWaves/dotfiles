@@ -78,6 +78,8 @@
 
     alejandra
     nil
+
+    nh # better nixos-rebuild
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
