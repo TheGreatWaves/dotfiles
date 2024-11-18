@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -55,7 +60,7 @@
     # Better rm (rip)
     rm-improved
 
-    # Better grep 
+    # Better grep
     ripgrep
 
     # Better tree
@@ -81,6 +86,7 @@
 
     nh # better nixos-rebuild
     pre-commit
+    ghc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -154,9 +160,9 @@
         "bind \"Alt l\" \"Alt Right\"".MoveFocusOrTab = "Right";
         "bind \"Alt j\" \"Alt Down\"".MoveFocusOrTab = "Down";
         "bind \"Alt k\" \"Alt Up\"".MoveFocusOrTab = "Up";
-        "bind \"Alt t\"".NewTab = null; 
-        "bind \"Alt f\"".ToggleFocusFullscreen = {};
-        "bind \"Alt x\"".CloseTab = {};
+        "bind \"Alt t\"".NewTab = null;
+        "bind \"Alt f\"".ToggleFocusFullscreen = { };
+        "bind \"Alt x\"".CloseTab = { };
         "bind \"Alt r\"" = {
           SwitchToMode = "RenameTab";
           TabNameInput = 0;
