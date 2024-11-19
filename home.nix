@@ -87,6 +87,7 @@
     nh # better nixos-rebuild
     pre-commit
     ghc
+    cabal-install
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
