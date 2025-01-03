@@ -19,25 +19,25 @@
       completion-replace = true;
       soft-wrap.enable = true;
       indent-guides.render = true;
-      statusline.right = [ "diagnostics" "selections" "position" "position-percentage" "file-encoding" ];
+      statusline.right = ["diagnostics" "selections" "position" "position-percentage" "file-encoding"];
     };
 
     keys.normal = {
       C-w = "save_selection";
       C-s = ":w!";
-      V = [ "goto_first_nonwhitespace" "extend_to_line_end" ];
-      D = [ "ensure_selections_forward" "extend_to_line_end" "trim_selections" ];
+      V = ["goto_first_nonwhitespace" "extend_to_line_end"];
+      D = ["ensure_selections_forward" "extend_to_line_end" "trim_selections"];
       x = "extend_line";
-      a = [ "append_mode" "collapse_selection" ];
-      i = [ "insert_mode" "collapse_selection" ];
-      C-j = [ "extend_to_line_bounds" "delete_selection" "paste_after" ];
-      C-k = [ "extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before" ];
+      a = ["append_mode" "collapse_selection"];
+      i = ["insert_mode" "collapse_selection"];
+      C-j = ["extend_to_line_bounds" "delete_selection" "paste_after"];
+      C-k = ["extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before"];
     };
 
     keys.select = {
-      ";" = [ "collapse_selection" "normal_mode" ];
-      A-j = [ "extend_to_line_bounds" "delete_selection" "paste_after" ];
-      A-k = [ "extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before" ];
+      ";" = ["collapse_selection" "normal_mode"];
+      A-j = ["extend_to_line_bounds" "delete_selection" "paste_after"];
+      A-k = ["extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before"];
     };
 
     keys.insert = {
@@ -45,5 +45,16 @@
       A-x = "normal_mode";
       C-s = ":w";
     };
+  };
+
+  languages = {
+    language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter = {command = "alejandra";};
+        scope = "source.nix";
+      }
+    ];
   };
 }

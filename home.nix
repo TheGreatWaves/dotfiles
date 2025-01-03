@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-
-{
+}: {
   imports = [
     ./just/config.nix
   ];
@@ -88,6 +86,11 @@
     pre-commit
     ghc
     cabal-install
+
+    nb # note taking, bookmarking, archiving
+
+    # perf
+    linuxKernel.packages.linux_zen.perf
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -103,6 +106,11 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    ".config/zellij/plugins/room.wasm".source = pkgs.fetchurl {
+      url = "https://github.com/rvcas/room/releases/latest/download/room.wasm";
+      sha256 = "0k5fy3svjvifsgp0kdvqdx9m9rzrql9cwq6hbvxdgklfnczqz8dp";
+    };
   };
 
   # Home Manager can also manage your environment variables through
@@ -131,8 +139,8 @@
   # Git configuration.
   programs.git = {
     enable = true;
-    userName = "kanagawa";
-    userEmail = "ochawinappi@gmail.com";
+    userName = "ochawin.apichattakul";
+    userEmail = "ochawin.apichattakul@mangoboost.io";
   };
 
   # Helix setup.
@@ -153,26 +161,45 @@
     enableZshIntegration = true;
     settings = {
       theme = "catppuccin-mocha";
-      default_layout = "compact";
+      # default_layout = "compact";
+      default_layout = "default";
       default_mode = "locked";
       keybinds.locked = {
         "bind \"Ctrl g\"".SwitchToMode = "Normal";
-        "bind \"Alt h\" \"Alt Left\"".MoveFocusOrTab = "Left";
-        "bind \"Alt l\" \"Alt Right\"".MoveFocusOrTab = "Right";
-        "bind \"Alt j\" \"Alt Down\"".MoveFocusOrTab = "Down";
-        "bind \"Alt k\" \"Alt Up\"".MoveFocusOrTab = "Up";
+        "bind \"Alt n\"".NewPane = "Right";
         "bind \"Alt t\"".NewTab = null;
-        "bind \"Alt f\"".ToggleFocusFullscreen = { };
-        "bind \"Alt x\"".CloseTab = { };
+        "bind \"Alt f\"".ToggleFocusFullscreen = {};
+        "bind \"Alt d\"".CloseFocus = {};
+        "bind \"Alt w\"".ToggleFloatingPanes = {};
+        "bind \"Alt e\"".TogglePaneEmbedOrFloating = {};
+        "bind \"Alt -\"".Resize = "Decrease";
+        "bind \"Alt =\"".Resize = "Increase";
         "bind \"Alt r\"" = {
           SwitchToMode = "RenameTab";
           TabNameInput = 0;
         };
+        "bind \"Alt o\""."LaunchOrFocusPlugin \"zellij:session-manager\"" = {floating = true;};
+        "bind \"Ctrl f\""."LaunchPlugin \"filepicker\"" = {close_on_selection = true;};
+        "bind \"Alt y\""."LaunchPlugin \"file:~/.config/zellij/plugins/room.wasm\"" = {
+          floating = true;
+          ignore_case = true;
+          quick_jump = true;
+        };
+      };
+      keybinds.shared = {
+        "bind \"Alt h\" \"Alt Left\"".MoveFocusOrTab = "Left";
+        "bind \"Alt l\" \"Alt Right\"".MoveFocusOrTab = "Right";
+        "bind \"Alt j\" \"Alt Down\"".MoveFocusOrTab = "Down";
+        "bind \"Alt k\" \"Alt Up\"".MoveFocusOrTab = "Up";
+        "bind \"Alt g\"".SwitchToMode = "Locked";
+        "bind \"Alt p\"".SwitchToMode = "Pane";
+        "bind \"Alt m\"".SwitchToMode = "Move";
+        "bind \"Alt ?\"".TogglePaneFrames = {};
       };
     };
   };
   # Setting up zsh.
-  programs.zsh = import ./zsh/config.nix { inherit pkgs; };
+  programs.zsh = import ./zsh/config.nix {inherit pkgs;};
 
   # Setting up eza.
   programs.eza = {
@@ -199,14 +226,16 @@
         [no-cd]
         lg:
           @lazygit
-      '').content
+      '')
+      .content
 
       # bat
       (lib.mkIf config.programs.bat.enable ''
         [no-cd]
         cat *FILES:
           @bat {{ FILES }}
-      '').content
+      '')
+      .content
     ];
   };
 
