@@ -139,8 +139,8 @@
   # Git configuration.
   programs.git = {
     enable = true;
-    userName = "ochawin.apichattakul";
-    userEmail = "ochawin.apichattakul@mangoboost.io";
+    userName = "Kanagawa";
+    userEmail = "ochaw.api@gmail.com";
   };
 
   # Helix setup.
