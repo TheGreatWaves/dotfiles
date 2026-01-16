@@ -39,7 +39,7 @@ in {
   config = mkIf cfg.enable {
     home.file.".justfile".text = cfg.source;
 
-    programs.zsh.initExtra = mkIf cfg.enableZshIntegration ''
+    programs.zsh.initContent = mkIf cfg.enableZshIntegration ''
       # Add just recipes.
       for recipe in `just -f ~/${cfg.file} --summary`; do
         alias $recipe="just -f ~/${cfg.file} -d. $recipe"

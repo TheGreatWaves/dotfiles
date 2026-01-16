@@ -1,14 +1,9 @@
 {
   description = "A very basic flake";
 
-  nixConfig = {
-    extra-trusted-substituters = ["https://cache.flox.dev"];
-    extra-trusted-public-keys = ["flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="];
-  };
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixos-wsl.url = "github:nix-community/nixos-wsl/release-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,9 +11,6 @@
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flox = {
-      url = "github:flox/flox/v1.3.8";
     };
   };
 
@@ -28,23 +20,9 @@
     nixos-wsl,
     home-manager,
     nix-index-database,
-    flox,
     ...
-  }: let
-    configuration = {pkgs, ...}: {
-      environment.systemPackages = [
-        inputs.flox.packages.${pkgs.system}.default
-      ];
-      nix.settings = {
-        substituters = [
-          "https://cache.flox.dev"
-        ];
-        trusted-public-keys = [
-          "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
-        ];
-      };
-    };
-  in {
+  }:
+  {
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -64,7 +42,6 @@
             system.stateVersion = "24.05";
             wsl.enable = true;
           }
-          configuration
         ];
       };
     };

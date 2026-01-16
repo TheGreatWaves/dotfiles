@@ -30,24 +30,24 @@
   home.packages = with pkgs; [
     zellij
     lazygit
-    z-lua
-    neofetch
+    # z-lua
+    # neofetch
     bat
-    nil
+    # nil
     just
     eza
     fzf
-    taskwarrior3
+    # taskwarrior3
 
     # For reverse engineering
-    radare2
+    # radare2
 
     # Better htop
     btop
 
     # Better man pages
-    tldr
-    navi # Interactive cheatsheet
+    # tldr
+    # navi # Interactive cheatsheet
 
     # Better cloc (count lines of code)
     scc
@@ -87,10 +87,9 @@
     ghc
     cabal-install
 
-    nb # note taking, bookmarking, archiving
+    # nb # note taking, bookmarking, archiving
 
-    # perf
-    linuxKernel.packages.linux_zen.perf
+    perf
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -130,7 +129,7 @@
   #  /etc/profiles/per-user/kanagawa/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "hx";
   };
 
   # Let Home Manager install and manage itself.
@@ -139,8 +138,10 @@
   # Git configuration.
   programs.git = {
     enable = true;
-    userName = "Kanagawa";
-    userEmail = "ochaw.api@gmail.com";
+    settings.user = {
+      email = "ochaw.api@gmail.com";
+      name = "Kanagawa";
+    };
   };
 
   # Helix setup.
